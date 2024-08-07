@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 type connectionObject = {
-  isConnected?: number; // ?: means ho bhi sakti hai nahi bhi hosakti hai
+  isConnected?: number; // ?: means connect ho bhi sakti hai nahi bhi hosakti hai
 };
 
 const connection: connectionObject = {};

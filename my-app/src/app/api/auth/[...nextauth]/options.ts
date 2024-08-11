@@ -48,13 +48,6 @@ export const authOptions: NextAuthOptions = {
     signIn: "/sign-in",
   },
   callbacks: {
-    async session({ session, token }) {
-      if (token) {
-        session.user._id = token._id?.toString();
-        session.user.isVerified = token.isVerified;
-      }
-      return session;
-    },
     async jwt({ token, user }) {
       if (user) {
         token._id = user._id?.toString();
@@ -63,6 +56,17 @@ export const authOptions: NextAuthOptions = {
         token.username = user.username;
       }
       return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user._id = token._id as string | undefined;
+        session.user.isVerified = token.isVerified as boolean | undefined;
+        session.user.isAcceptingMessage = token.isAcceptingMessage as
+          | boolean
+          | undefined;
+        session.user.username = token.username as string | undefined;
+      }
+      return session;
     },
   },
   session: {

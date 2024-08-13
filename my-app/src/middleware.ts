@@ -8,10 +8,8 @@ export async function middleware(request: NextRequest) {
   console.log(token);
   const url = request.nextUrl;
   console.log(url);
-
-  //routing issue
   if (
-    token &&
+    !token &&
     (url.pathname.startsWith("/sign-in") ||
       url.pathname.startsWith("/verify") ||
       url.pathname.startsWith("/sign-up") ||
